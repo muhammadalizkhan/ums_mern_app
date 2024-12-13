@@ -1,30 +1,32 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
-import { useState } from 'react';
+// src/auth/Login/Login.js
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Login.css';
+import './Login.css';  // Import the custom CSS file
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-      localStorage.setItem('token', response.data.token);
-      navigate('/');
+      // Make API request to login
+      const response = await axios.post('http://localhost:3000/api/auth/login', { email, password });
+      // Store JWT token in localStorage
+      localStorage.setItem('authToken', response.data.token);
+      navigate('/dashboard');  // Redirect to dashboard
     } catch (err) {
-      setError('Invalid credentials');
+      console.error(err);
+      alert('Invalid credentials or server error');
     }
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
+    <div className="auth-container">
+      <div className="auth-form">
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <div className="input-group">
@@ -45,17 +47,11 @@ const Login = () => {
               required
             />
           </div>
-          {error && <p className="error-message">{error}</p>}
-          <button type="submit" className="btn">Log In</button>
+          <button type="submit" className="auth-button">Login</button>
         </form>
-        <div className="links">
-          <p>
-            Don't have an account? <a href="/Signup">Sign Up</a>
-          </p>
-          <p>
-            Forgot your password? <a href="/Forgotpass">Reset it</a>
-          </p>
-        </div>
+        <p className="auth-footer">
+          Don't have an account? <a href="/signup">Signup</a>
+        </p>
       </div>
     </div>
   );
