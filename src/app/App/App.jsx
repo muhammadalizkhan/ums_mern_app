@@ -1,18 +1,21 @@
+/* eslint-disable react/prop-types */
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from '../auth/Login/Login';
 import Signup from '../auth/Signup/Signup';
 import Dashboard from '../../Dashboard/Dashboard';
+import Verification from '../auth/Verification/Verification';
+import ResetPassword from '../auth/ResetPassword/ResetPassword';
+import Forgotpass from '../auth/Forgotpass/Forgotpass';
 
 const ProtectedRoute = ({ element }) => {
   const token = localStorage.getItem('authToken');
 
   if (!token) {
-    // If there's no token, redirect to login page
     window.location.href = '/';
-    return null;  // Prevent the rest of the component from rendering
+    return null;
   }
 
-  return element;  // If there's a token, show the dashboard
+  return element;
 };
 
 function App() {
@@ -20,8 +23,11 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+        <Route path="/Verification/:token" element={<Verification />} />
+        <Route path="/Forgotpass" element={<Forgotpass />} />
+        <Route path="/ResetPassword/:token" element={<ResetPassword />} />
       </Routes>
     </Router>
   );

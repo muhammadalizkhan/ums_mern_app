@@ -1,18 +1,23 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Dashboard.css'; // Importing the custom CSS file
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');  // Remove JWT token from localStorage
-    navigate('/');  // Redirect to login page
+    localStorage.removeItem('authToken');
+    navigate('/');
   };
 
   return (
-    <div>
-      <h2>Welcome to the Dashboard</h2>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="dashboard-container">
+      <div className="dashboard-header">
+        <h2>Welcome to the Dashboard</h2>
+        <p>Your session is active</p>
+      </div>
+      <div className="dashboard-content">
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 };

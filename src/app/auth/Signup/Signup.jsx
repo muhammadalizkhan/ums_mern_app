@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Signup.css';  // Import the custom CSS file
+import './Signup.css';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -18,9 +18,8 @@ const Signup = () => {
     }
 
     try {
-      // Send POST request to create a new user
       await axios.post('http://localhost:3000/api/auth/signup', { email, password });
-      navigate('/');  // Redirect to login page after successful signup
+      navigate('/');
     } catch (err) {
       console.error(err);
       alert('Error creating account or server error');

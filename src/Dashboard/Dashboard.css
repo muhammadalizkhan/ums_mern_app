@@ -1,21 +1,70 @@
-/* Dashboard.css */
+/* Dashboard container styling */
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #f4f7fc;
-    min-height: 100vh;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f7fc;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Header section of the dashboard */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  color: #333;
+  font-size: 2rem;
+}
+
+.dashboard-header p {
+  color: #555;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Main content styling */
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styling the logout button */
+.logout-button {
+  background-color: #ff4c4c;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #e03d3d;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 10px;
   }
-  
-  .dashboard-container h2 {
-    color: #333;
+
+  .dashboard-header h2 {
+    font-size: 1.5rem;
   }
-  
-  .dashboard-container p {
-    font-size: 1.2em;
-    color: #555;
+
+  .dashboard-header p {
+    font-size: 0.9rem;
   }
-  
+
+  .logout-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
